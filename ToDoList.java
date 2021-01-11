@@ -3,8 +3,8 @@ package ToDoList;
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.InputMismatchException;
-import java.util.List;
 import java.util.Scanner;
 
 
@@ -14,7 +14,7 @@ public class ToDoList {
 
     private final String path = "D:\\Programmieren\\IdeaProjects\\To Do List\\List.txt";
     private boolean loop = true;
-    List<String> allLines = Files.readAllLines(Paths.get(path));
+    private final ArrayList<String> allLines = new ArrayList<>(Files.readAllLines(Paths.get(path)));
 
     //Methods
 
@@ -23,8 +23,10 @@ public class ToDoList {
         if(this.allLines.isEmpty()){
             System.out.println("Die Datei enthält keine Aufgaben");
         }
+        int index = 1;
         for (String line : this.allLines) {
-            System.out.println(line);
+            System.out.println(index + ". " + line);
+            index++;
         }
     }
 
@@ -63,10 +65,8 @@ public class ToDoList {
             if(this.allLines.isEmpty()) {
                 throw new NotEmptyException();
             }
+            scRemove.hasNextInt();
             this.allLines.remove(scRemove.nextInt()-1);
-            if (!scRemove.hasNextInt()){
-                throw new InputMismatchException();
-            }
             Files.write(Paths.get(path),this.allLines);
             //Remove another task?
             redo();
