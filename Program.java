@@ -1,6 +1,7 @@
 package ToDoList;
 
 import java.io.IOException;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Program {
@@ -53,6 +54,10 @@ public class Program {
                     }
                     catch (NotEmptyException nee) {
                         System.out.println("Die Datei enthält keine Aufgaben");
+                        System.out.println();
+                    }
+                    catch (InputMismatchException ime){
+                        System.out.println("Ihre Eingabe ist Ungültig");
                         System.out.println();
                     }
                 }

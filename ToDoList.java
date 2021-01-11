@@ -3,6 +3,7 @@ package ToDoList;
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -35,14 +36,14 @@ public class ToDoList {
             //Add task
             System.out.println("Gebe Deine neue Aufgabe ein: ");
             System.out.println("-----------------------------");
-            this.allLines.add(scAdd.next());
+            this.allLines.add(scAdd.nextLine());
             Files.write(Paths.get(path),this.allLines);
             //Add another task?
             redo();
         }
     }
 
-    public void remove() throws IOException, NotEmptyException {
+    public void remove() throws IOException, NotEmptyException, InputMismatchException {
         Scanner scRemove = new Scanner(System.in);
         //Error Exception
         if(this.allLines.isEmpty()){
@@ -63,6 +64,9 @@ public class ToDoList {
                 throw new NotEmptyException();
             }
             this.allLines.remove(scRemove.nextInt()-1);
+            if (!scRemove.hasNextInt()){
+                throw new InputMismatchException();
+            }
             Files.write(Paths.get(path),this.allLines);
             //Remove another task?
             redo();
