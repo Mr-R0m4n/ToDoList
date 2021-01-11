@@ -55,7 +55,8 @@ public class ToDoList {
             display();
             //Remove task
             System.out.println();
-            System.out.println("Welche Aufgabe möchtest Du löschen: ");
+            System.out.println("Welche Aufgabe möchtest Du löschen? ");
+            System.out.println("Bitte gebe die gewünschte Zeile an: ");
             System.out.println("------------------------------------");
             System.out.println();
             if(this.allLines.isEmpty()) {
