@@ -8,8 +8,7 @@ public class Program {
     public static void main(String[] args) throws IOException {
 
         //Attributes
-        ToDoList toDoList = new ToDoList();
-
+            ToDoList toDoList = new ToDoList();
         //loop
         boolean loopMenu = true;
         while (loopMenu) {
@@ -52,7 +51,7 @@ public class Program {
                         System.out.println("Die Datei konnte nicht eingelesen werden");
                         ioe.printStackTrace();
                     }
-                    catch (NotEmptyException nee) {
+                    catch (IsEmptyException iee) {
                         System.out.println("Die Datei enthält keine Aufgaben");
                         System.out.println();
                     }

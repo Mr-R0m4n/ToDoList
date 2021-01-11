@@ -11,8 +11,8 @@ import java.util.Scanner;
 public class ToDoList {
 
     //Attributes
-
     private final String path = "D:\\Programmieren\\IdeaProjects\\To Do List\\List.txt";
+    private final FileOutputStream fos = new FileOutputStream(path, true);
     private boolean loop = true;
     private final ArrayList<String> allLines = new ArrayList<>(Files.readAllLines(Paths.get(path)));
 
@@ -45,11 +45,11 @@ public class ToDoList {
         }
     }
 
-    public void remove() throws IOException, NotEmptyException, InputMismatchException {
+    public void remove() throws IOException, IsEmptyException, InputMismatchException {
         Scanner scRemove = new Scanner(System.in);
         //Error Exception
         if(this.allLines.isEmpty()){
-            throw new NotEmptyException();
+            throw new IsEmptyException();
         }
         //Loop
         this.loop = true;
@@ -63,7 +63,7 @@ public class ToDoList {
             System.out.println("------------------------------------");
             System.out.println();
             if(this.allLines.isEmpty()) {
-                throw new NotEmptyException();
+                throw new IsEmptyException();
             }
             scRemove.hasNextInt();
             this.allLines.remove(scRemove.nextInt()-1);
